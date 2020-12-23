@@ -8,13 +8,45 @@ import random
 
 # Get requirements
 print("\nMinimums")
-length = int(input("What is the minimum password length? -> "))
-uppercase_minimum = int(input("How many upper case characters? -> "))
-numbers_minimum = int(input("How many numbers? -> "))
-special_minimum = int(input("How many special characters? -> "))
+while True:
+    length = input("What is the minimum password length? -> ")
+    try:
+        length = int(length)
+    except ValueError:
+        print("Please enter an integer.")
+        continue
+    else:
+        break
+while True:
+    uppercase_minimum = input("How many uppercase characters? -> ")
+    try:
+        uppercase_minimum = int(uppercase_minimum)
+    except ValueError:
+        print("Please enter an integer.")
+        continue
+    else:
+        break
+while True:
+    numbers_minimum = input("How many numbers? -> ")
+    try:
+        numbers_minimum = int(numbers_minimum)
+    except ValueError:
+        print("Please enter an integer.")
+        continue
+    else:
+        break
+while True:
+    special_minimum = input("How many special characters? -> ")
+    try:
+        special_minimum = int(special_minimum)
+    except ValueError:
+        print("Please enter an integer.")
+        continue
+    else:
+        break
 
 print("\nSpecial Cases")
-special_characters = input("What special characters can be used? -> ")
+special_characters = input("What special characters are allowed? -> ")
 
 lowercase = ''.join(choice(string.ascii_lowercase) for x in range(randint(length,length+4)))
 uppercase = ''.join(choice(string.ascii_uppercase) for x in range(randint(uppercase_minimum,uppercase_minimum+4)))
@@ -26,4 +58,4 @@ password = lowercase + uppercase + numbers + special
 
 # Randomize the string and print to user
 password = ''.join(random.sample(password, len(password)))
-print(password)
+print("\nPassword: ", password)
