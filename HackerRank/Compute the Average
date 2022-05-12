@@ -1,0 +1,28 @@
+#!/bin/bash
+# Title: Computer the Average
+# Description: Given N integers, computer their average, round to three decimal places
+# Input Format:
+#                The first line contains an integer, N.
+#                Each of the following N lines contains a single integer.
+# Contraints:    
+#                1 <= N <= 500
+#                -10000 <= x <= 10000 (x is the elements of the list to be computed)
+# Sample Input:
+#                3
+#                1
+#                2
+#                3
+# Sample Output: 2.000
+
+exp=""
+read input_N
+read next_val
+exp+="${next_val}"
+for (( c=1; c<$input_N; c++))
+do
+    read next_val
+    exp+="+${next_val}"
+done
+result=$(bc -l <<< "scale=6;$exp")
+result=$(bc -l <<< "scale=6;$result/$input_N")
+printf "%.3f \n" $result
