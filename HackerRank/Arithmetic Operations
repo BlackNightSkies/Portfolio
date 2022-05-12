@@ -1,0 +1,30 @@
+#!/bin/bash
+# Title:          Aritmetic Operations via terminal input
+# Description:    A mathematical expression containing +,-,*,^, / and 
+#                 parenthesis will be provided. Read in the expression, 
+#                 then evaluate it. Display the result rounded to 3 decimal 
+#                 places.
+# Constraints:    All numeric values are <= 999.
+# Sample Inputs:
+#                 5+50*3/20 + (19*2)/7
+#                 -105+50*3/20 + (19^2)/7
+#                 (-105.5*7+50*3)/20 + (19^2)/7
+
+# Read input
+read math_ex
+new_ex=""
+
+# For loop breaks input down based on spaces, adds to "new_ex" for final evaluation
+for i in $math_ex
+do  
+    if [ $i == "+" ] || [ $i == "-" ] || [ $i == "*" ] || [ $i == "^" ] || [ $i == "/" ]
+    then 
+        new_ex+="${i}"
+    else
+        temp_val=$(bc -l <<< "scale=6;$i") 
+        new_ex+="${temp_val}"
+    fi
+done
+# "bc" doesn't round so how to use "printf" floating values for rounding up cases
+result=$(bc -l <<< "scale=6;$new_ex")
+printf "%.3f \n" $result
